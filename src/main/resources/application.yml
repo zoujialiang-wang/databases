@@ -1,0 +1,26 @@
+
+spring:
+  redis:
+    host: 192.168.0.119
+    port: 6379
+    password: fooblud
+    database: 15
+  data:
+    mongodb:
+      database: gaint
+      host: 192.168.0.119
+      port: 27017
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://175.24.187.4:3306/gulimall_wms?useUnicode=true&useSSL=false&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+#  mybatis-plus:
+#    mapper-locations: classpath*:/mapper/**/*.xml
+#    global-config:
+#      db-config:
+#        id-type: auto
+#        logic-delete-value: 1
+server:
+  port: 8979
+#        logic-not-delete-value: 0

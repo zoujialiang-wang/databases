@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    repositories { maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' } }
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation(
+        'mysql:mysql-connector-java:8.0.20',
+        'com.baomidou:mybatis-plus-boot-starter:3.4.0',
+         'com.baomidou:mybatis-plus-generator:3.4.0',
+         'org.freemarker:freemarker:2.3.30'
+    )
+    implementation(
+            'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
