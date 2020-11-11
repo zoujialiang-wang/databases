@@ -1,5 +1,4 @@
-# databases
-数据库整合
+# databases功能实现
 
 ## 整合mysql，redis，mongodb
 
