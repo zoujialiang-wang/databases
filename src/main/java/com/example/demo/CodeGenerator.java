@@ -57,9 +57,9 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://175.24.187.4:3306/gulimall_wms?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:p6spy:mysql://175.24.187.4:3306/gulimall_wms?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setDriverName("com.p6spy.engine.spy.P6SpyDriver");
         dsc.setUsername("root");
         dsc.setPassword("");
         mpg.setDataSource(dsc);

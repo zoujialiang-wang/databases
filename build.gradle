@@ -24,11 +24,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.alibaba:fastjson:1.2.58'
     implementation(
         'mysql:mysql-connector-java:8.0.20',
         'com.baomidou:mybatis-plus-boot-starter:3.4.0',
          'com.baomidou:mybatis-plus-generator:3.4.0',
-         'org.freemarker:freemarker:2.3.30'
+         'org.freemarker:freemarker:2.3.30',
+         'p6spy:p6spy:3.8.2'
     )
     implementation(
             'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4'

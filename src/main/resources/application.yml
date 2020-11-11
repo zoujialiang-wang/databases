@@ -13,10 +13,10 @@ spring:
   datasource:
     username: root
     password:
-    url: jdbc:mysql://175.24.187.4:3306/gulimall_wms?useUnicode=true&useSSL=false&characterEncoding=utf8
-    driver-class-name: com.mysql.jdbc.Driver
-#  mybatis-plus:
-#    mapper-locations: classpath*:/mapper/**/*.xml
+    url: jdbc:p6spy:mysql://175.24.187.4:3306/gulimall_wms?useUnicode=true&useSSL=false&characterEncoding=utf8
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+  mybatis-plus:
+    mapper-locations: classpath*:/mapper/**/*.xml
 #    global-config:
 #      db-config:
 #        id-type: auto
