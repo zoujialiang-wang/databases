@@ -1,14 +1,14 @@
 
 spring:
   redis:
-    host: 192.168.0.119
+    host: 175.24.187.4
     port: 6379
-    password: fooblud
+#    password: fooblud
     database: 15
   data:
     mongodb:
       database: gaint
-      host: 192.168.0.119
+      host: 175.24.187.4
       port: 27017
   datasource:
     username: root

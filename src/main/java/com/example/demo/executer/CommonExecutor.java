@@ -55,7 +55,7 @@ public class CommonExecutor {
      */
     public static ThreadPoolExecutor buildThreadFirstExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, int workQueueSize, String poolName) {
         // 自定义队列，优先开启更多线程，而不是放入队列
-        LinkedBlockingDeque<Runnable> queue = new LinkedBlockingDeque<>(workQueueSize) {
+        LinkedBlockingDeque<Runnable> queue = new LinkedBlockingDeque<Runnable>(workQueueSize) {
             @Override
             public boolean offer( Runnable runnable) {
                 return false; // 造成队列已满的假象
