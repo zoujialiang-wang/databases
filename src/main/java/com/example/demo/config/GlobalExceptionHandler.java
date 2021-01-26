@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = NullPointerException.class)
     @ResponseStatus(HttpStatus.OK)
     public JSONObject exceptionHandler(HttpServletRequest req, NullPointerException e){
-        log.error("发生空指针异常！原因是:",e);
+       // log.error("发生空指针异常！原因是:",e);
         return ResponseUtil.fail(300,"空指针异常");
     }
 

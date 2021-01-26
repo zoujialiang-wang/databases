@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Component
 public class ExecutorManager {
-    private static final ConcurrentHashMap<String, ThreadPoolExecutor> EXECUTORS = new ConcurrentHashMap<>(8);
+    private static final ConcurrentHashMap<String, ThreadPoolExecutor> EXECUTORS = new ConcurrentHashMap<>(10);
 
     /**
      * 向管理器注册线程池

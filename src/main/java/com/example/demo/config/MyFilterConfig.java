@@ -26,7 +26,6 @@ public class MyFilterConfig {
         filterRegistrationBean.setOrder(2);
         filterRegistrationBean.setFilter(myFilter);
         filterRegistrationBean.setUrlPatterns(new ArrayList<>(Arrays.asList("/*")));
-
         return filterRegistrationBean;
     }
 

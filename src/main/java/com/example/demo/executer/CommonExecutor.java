@@ -67,17 +67,17 @@ public class CommonExecutor {
             try {
                 queue.put(runnable);
             } catch (InterruptedException e) {
-                log.error("{} Queue offer interrupted", poolName, e);
+                ////log.error("{} Queue offer interrupted", poolName, e);
             }
         };
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, queue, new ThreadFactoryBuilder().setNameFormat(poolName).setUncaughtExceptionHandler((Thread thread, Throwable throwable) -> {
-            log.error("{} catching the uncaught exception, ThreadName: [{}]", poolName, thread.toString(), throwable);
+            //log.error("{} catching the uncaught exception, ThreadName: [{}]", poolName, thread.toString(), throwable);
         }).build(), rejectedExecutionHandler);
         //超时后核心线程会关闭
         executor.allowCoreThreadTimeOut(true);
         //开启自动监控线程的功能
-        CommonExecutor.displayThreadPoolStatus(executor, poolName);
+        //CommonExecutor.displayThreadPoolStatus(executor, poolName);
         ExecutorManager.registerThreadPoolExecutor(poolName, executor);
         CommonExecutor.hookShutdownThreadPool(executor, poolName);
         return executor;
@@ -91,7 +91,7 @@ public class CommonExecutor {
      */
     private static void hookShutdownThreadPool(ThreadPoolExecutor threadPool, String threadPoolName) {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            log.info("[>>ExecutorShutdown<<] Start to shutdown the thead pool: [{}]", threadPoolName);
+            //log.info("[>>ExecutorShutdown<<] Start to shutdown the thead pool: [{}]", threadPoolName);
             // 使新任务无法提交
             threadPool.shutdown();
             // 等待未完成任务结束
@@ -99,7 +99,7 @@ public class CommonExecutor {
                 if (!threadPool.awaitTermination(60, TimeUnit.SECONDS)) {
                     // 取消当前执行的任务
                     threadPool.shutdownNow();
-                    log.error("[>>ExecutorShutdown<<] Interrupt the worker, which may cause some task inconsistent. Please check the biz logs.");
+                    //log.error("[>>ExecutorShutdown<<] Interrupt the worker, which may cause some task inconsistent. Please check the biz //logs.");
                 }
             } catch (InterruptedException e) {
                 // 重新取消当前线程进行中断
@@ -133,12 +133,14 @@ public class CommonExecutor {
                     threadPool.getCompletedTaskCount(), // 已完成的任务数
                     threadPool.getQueue().size()};
             if (threadPool.getQueue().remainingCapacity() < 64) {
-                log.warn(payload, params);
+                //log.warn(payload, params);
             } else {
-                log.info(payload, params);
+                //log.info(payload, params);
             }
         }, 0, period, unit);
     }
+
+
 }
 
 
