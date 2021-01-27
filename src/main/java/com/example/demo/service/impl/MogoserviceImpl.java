@@ -6,7 +6,6 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
@@ -30,6 +29,7 @@ class MogoserviceImpl implements MogoService {
 
     @Override
     public List<Document> aggregation() {
+
         redisTemplate.executePipelined(new SessionCallback<Object>() {
             @Override
             public <K, V> Object execute(RedisOperations<K, V> operations) throws DataAccessException {
@@ -64,5 +64,6 @@ class MogoserviceImpl implements MogoService {
 //    public List<ChatUserList> test2(){
 //        return mongoTemplate.find(new Query().addCriteria(Criteria.where("followCount").is(55)),ChatUserList.class,"chatUser");
 //    }
+
 
 }
