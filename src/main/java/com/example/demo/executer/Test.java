@@ -1,5 +1,7 @@
 package com.example.demo.executer;
 
+
+
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -15,7 +17,8 @@ public class Test {
     ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(queueSize);
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        cyclicBarrierTest();
+        Test test = new Test();
+        test.atomicTest();
     }
 
     /**
@@ -26,11 +29,10 @@ public class Test {
      */
     private static void syn() throws InterruptedException, ExecutionException {
         ThreadPoolExecutor test = CommonExecutor.buildThreadFirstExecutor("test");
-        ExecutorService executorService = Executors.newFixedThreadPool(8);
         for (int i = 0; i < 5; i++) {
             int seqNo = i;
             Future<String> submit = test.submit(() -> {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(new Random().nextInt(3));
                 return "syn======HelloWorld-" + seqNo + "-" + Thread.currentThread().getName();
             });
             System.out.println(submit.get());
@@ -49,7 +51,7 @@ public class Test {
         for (int i = 0; i < 5; i++) {
             int seqNo = i;
             threadPoolService.submit((Callable<String>) () -> {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(new Random().nextInt(10));
                 return "HelloWorld-" + seqNo + "-" + Thread.currentThread().getName();
             });
         }
@@ -96,6 +98,7 @@ public class Test {
             while (true) {
                 try {
                     arrayBlockingQueue.put(1);
+                    TimeUnit.SECONDS.sleep(new Random().nextInt(3));
                     System.out.println("向队列取中插入一个元素，队列剩余空间：" + (queueSize - arrayBlockingQueue.size()));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -177,13 +180,13 @@ public class Test {
                 try {
                     TimeUnit.SECONDS.sleep(new Random().nextInt(10));
                     System.out.println("加载前置" + finalI);
-                    countDownLatch.countDown();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    countDownLatch.countDown();
                 }
             });
         }
-
     }
 
     /**
@@ -196,10 +199,9 @@ public class Test {
         ThreadPoolExecutor test = CommonExecutor.buildThreadFirstExecutor("cyclicBarrierTest");
         for (int i = 0; i < 3; i++) {
             test.execute(() -> {
-                for (int j = 1; j < 4; j++) {
+                for (int j = 1; j < 10; j++) {
                     try {
-                        Random random = new Random();
-                        Thread.sleep(random.nextInt(1000));
+                        TimeUnit.SECONDS.sleep(1);
                         System.out.println(String.format("关卡%d的任务完成", j));
                         cyclicBarrier.await();
                     } catch (InterruptedException | BrokenBarrierException e) {

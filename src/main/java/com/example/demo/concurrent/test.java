@@ -1,5 +1,6 @@
 package com.example.demo.concurrent;
 
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -21,7 +22,5 @@ public class test {
     }
 
     public static void main(String[] args) {
-        ConcurrentHashMap data = getData(10);
-        System.out.println(data);
     }
 }

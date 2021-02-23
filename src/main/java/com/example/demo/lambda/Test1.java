@@ -18,6 +18,12 @@ public class Test1 {
     private Map<Long, Object> cache = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
+        Stream<String> stream = Stream.of("I", "love", "you", "too");
+        Optional<String> reduce = stream.reduce((s1, s2) -> s1.length() > s2.length() ? s1 : s2);
+        System.out.println(reduce.get());
+    }
+
+    private static void aaaaaaa() {
         //Supplier是提供一个数据的接口。这里我们实现获取一个随机数
         Supplier<Integer> stringSupplier = () -> ThreadLocalRandom.current().nextInt();
         System.out.println(stringSupplier.get());
@@ -48,7 +54,6 @@ public class Test1 {
         System.out.println(Optional.ofNullable(2L).map(s -> s * s).get());
         Stream<String> stringStream = Optional.of(list).map(a -> a.stream().filter(b -> b.length() >= 2)).get();
         System.out.println(stringStream.toArray());
-
     }
 
     private void test() {
